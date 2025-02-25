@@ -9,6 +9,17 @@ class Node {
 class Tree {
   constructor(values) {
     this.values = values;
-    this.root = null;
+    this.root = this.#buildTree(this.values);
+  }
+
+  #sort(array) {
+    return [...new Set(array)].sort((a, b) => a - b);
+  }
+
+  #buildTree(array) {
+    // Temporary logic to log #sort method result
+    console.log(this.#sort(array));
   }
 }
+
+export default Tree;
