@@ -57,6 +57,62 @@ class Tree {
 
     return node;
   }
+
+  deleteItem(value, node = this.root) {
+    if (!node) return null;
+
+    if (node === this.root && node.data === value) {
+      if (!node.left && !node.right) return (this.root = null);
+
+      if (!node.left || !node.right) {
+        return (this.root = node.left || node.right);
+      } else {
+        let current = node.right;
+        while (current.left !== null) {
+          current = current.left;
+        }
+        this.deleteItem(current.data);
+        this.root.data = current.data;
+        return;
+      }
+    }
+
+    if (node.data > value) {
+      if (node.left && node.left.data === value) {
+        if (!node.left.left && !node.left.right) return (node.left = null);
+        if (!node.left.left || !node.left.right)
+          return (node.left = node.left.left || node.left.right);
+        else {
+          let current = node.left.right;
+          while (current.left !== null) {
+            current = current.left;
+          }
+          this.deleteItem(current.data);
+          node.left.data = current.data;
+          return;
+        }
+      }
+      return this.deleteItem(value, node.left);
+    }
+
+    if (node.data < value) {
+      if (node.right && node.right.data === value) {
+        if (!node.right.left && !node.right.right) return (node.right = null);
+        if (!node.right.left || !node.right.right)
+          return (node.right = node.right.left || node.right.right);
+        else {
+          let current = node.right.right;
+          while (current.left !== null) {
+            current = current.left;
+          }
+          this.deleteItem(current.data);
+          node.right.data = current.data;
+          return;
+        }
+      }
+      return this.deleteItem(value, node.right);
+    }
+  }
 }
 
 export default Tree;

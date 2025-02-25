@@ -7,7 +7,11 @@ const tree = new Tree(data);
 tree.insert(29);
 tree.insert(99);
 tree.insert(993);
+tree.insert(9999);
 tree.insert(-50);
 tree.insert(7);
+tree.insert(2);
+
+tree.deleteItem(67);
 
 tree.prettyPrint(tree.root);
