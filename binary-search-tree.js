@@ -9,7 +9,8 @@ class Node {
 class Tree {
   constructor(values) {
     this.values = values;
-    this.root = this.#buildTree(this.values);
+    this.root = this.#buildTree(this.#sort(this.values));
+    this.prettyPrint(this.root);
   }
 
   #sort(array) {
@@ -17,8 +18,29 @@ class Tree {
   }
 
   #buildTree(array) {
-    // Temporary logic to log #sort method result
-    console.log(this.#sort(array));
+    if (array.length <= 1) return new Node(array[0]);
+
+    const mid = Math.floor(array.length / 2);
+
+    const data = array[mid];
+    const left = array.slice(0, mid);
+    const right = array.slice(mid + 1);
+
+    const node = new Node(data, this.#buildTree(left), this.#buildTree(right));
+    return node;
+  }
+
+  prettyPrint(node, prefix = '', isLeft = true) {
+    if (node === null) return;
+    if (node.right !== null)
+      this.prettyPrint(
+        node.right,
+        `${prefix}${isLeft ? '│   ' : '    '}`,
+        false
+      );
+    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+    if (node.left !== null)
+      this.prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
   }
 }
 
