@@ -113,6 +113,19 @@ class Tree {
       return this.deleteItem(value, node.right);
     }
   }
+
+  find(value) {
+    let current = this.root;
+
+    while (current) {
+      if (current.data === value) break;
+      if (current.data > value) {
+        current = current.left;
+      } else current = current.right;
+    }
+
+    return current;
+  }
 }
 
 export default Tree;
