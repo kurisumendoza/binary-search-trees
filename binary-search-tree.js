@@ -142,6 +142,16 @@ class Tree {
     }
   }
   // TODO: Implement a recursive levelOrder after implementing height method
+
+  preOrder(callback, current = this.root) {
+    if (!callback) throw Error('Function requires callback');
+    if (!current) return;
+
+    callback(current);
+    if (current.left) this.preOrder(callback, current.left);
+    if (current.right) this.preOrder(callback, current.right);
+    return;
+  }
 }
 
 export default Tree;
