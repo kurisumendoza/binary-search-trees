@@ -18,3 +18,5 @@ tree.prettyPrint(tree.root);
 
 console.log('FIND 23:', tree.find(23));
 console.log('FIND 50:', tree.find(50));
+
+tree.levelOrder((el) => console.log(el.data));
