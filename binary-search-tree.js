@@ -143,7 +143,16 @@ class Tree {
       current = queue.shift();
     }
   }
-  // TODO: Implement a recursive levelOrder after implementing height method
+
+  recursiveLevelOrder(callback, current = this.root, queue = []) {
+    if (!this.#checkCallbackAndNode(callback, current)) return;
+
+    callback(current);
+    if (current.left) queue.push(current.left);
+    if (current.right) queue.push(current.right);
+    current = queue.shift() || null;
+    return this.recursiveLevelOrder(callback, current, queue);
+  }
 
   preOrder(callback, current = this.root) {
     if (!this.#checkCallbackAndNode(callback, current)) return;

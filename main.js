@@ -22,6 +22,7 @@ console.log('TREE HEIGHT:', tree.height(tree.root));
 console.log('DEPTH OF 1:', tree.depth(tree.find(1)));
 
 // tree.levelOrder((el) => console.log(el.data));
+// tree.recursiveLevelOrder((el) => console.log(el.data));
 // tree.preOrder((el) => console.log(el.data));
 // tree.inOrder((el) => console.log(el.data));
 // tree.postOrder((el) => console.log(el.data));
