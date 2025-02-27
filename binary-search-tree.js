@@ -127,11 +127,13 @@ class Tree {
     return current;
   }
 
-  levelOrder(callback) {
+  #checkCallbackAndNode(callback, current) {
     if (!callback) throw Error('Function requires callback');
-    if (!this.root) return;
+    return !current ? false : true;
+  }
 
-    let current = this.root;
+  levelOrder(callback, current = this.root) {
+    if (!this.#checkCallbackAndNode(callback, current)) return;
     const queue = [];
 
     while (current) {
@@ -144,22 +146,27 @@ class Tree {
   // TODO: Implement a recursive levelOrder after implementing height method
 
   preOrder(callback, current = this.root) {
-    if (!callback) throw Error('Function requires callback');
-    if (!current) return;
+    if (!this.#checkCallbackAndNode(callback, current)) return;
 
     callback(current);
     this.preOrder(callback, current.left);
     this.preOrder(callback, current.right);
-    return;
   }
 
   inOrder(callback, current = this.root) {
-    if (!callback) throw Error('Function requires callback');
-    if (!current) return;
+    if (!this.#checkCallbackAndNode(callback, current)) return;
 
     this.inOrder(callback, current.left);
     callback(current);
     this.inOrder(callback, current.right);
+  }
+
+  postOrder(callback, current = this.root) {
+    if (!this.#checkCallbackAndNode(callback, current)) return;
+
+    this.postOrder(callback, current.left);
+    this.postOrder(callback, current.right);
+    callback(current);
   }
 }
 

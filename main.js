@@ -22,3 +22,4 @@ console.log('FIND 50:', tree.find(50));
 // tree.levelOrder((el) => console.log(el.data));
 // tree.preOrder((el) => console.log(el.data));
 // tree.inOrder((el) => console.log(el.data));
+// tree.postOrder((el) => console.log(el.data));
