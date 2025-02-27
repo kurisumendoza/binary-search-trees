@@ -191,6 +191,16 @@ class Tree {
     if (node.data < current.data) return this.depth(node, current.left) + 1;
     if (node.data > current.data) return this.depth(node, current.right) + 1;
   }
+
+  isBalanced(node = this.root) {
+    if (!node) return true;
+
+    if (Math.abs(this.height(node.left) - this.height(node.right)) > 1)
+      return false;
+    if (!this.isBalanced(node.left)) return false;
+    if (!this.isBalanced(node.right)) return false;
+    return true;
+  }
 }
 
 export default Tree;
