@@ -148,9 +148,18 @@ class Tree {
     if (!current) return;
 
     callback(current);
-    if (current.left) this.preOrder(callback, current.left);
-    if (current.right) this.preOrder(callback, current.right);
+    this.preOrder(callback, current.left);
+    this.preOrder(callback, current.right);
     return;
+  }
+
+  inOrder(callback, current = this.root) {
+    if (!callback) throw Error('Function requires callback');
+    if (!current) return;
+
+    this.inOrder(callback, current.left);
+    callback(current);
+    this.inOrder(callback, current.right);
   }
 }
 
