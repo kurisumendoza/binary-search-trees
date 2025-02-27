@@ -173,6 +173,15 @@ class Tree {
     if (!node) return -1;
     return Math.max(this.height(node.left), this.height(node.right)) + 1;
   }
+
+  depth(node, current = this.root) {
+    if (!node || !current) return null;
+
+    if (current === node) return 0;
+
+    if (node.data < current.data) return this.depth(node, current.left) + 1;
+    if (node.data > current.data) return this.depth(node, current.right) + 1;
+  }
 }
 
 export default Tree;
