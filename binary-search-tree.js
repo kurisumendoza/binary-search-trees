@@ -201,6 +201,12 @@ class Tree {
     if (!this.isBalanced(node.right)) return false;
     return true;
   }
+
+  rebalance() {
+    const sortedArr = [];
+    this.inOrder((el) => sortedArr.push(el.data));
+    this.root = this.#buildTree(sortedArr);
+  }
 }
 
 export default Tree;
