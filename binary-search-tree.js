@@ -168,6 +168,11 @@ class Tree {
     this.postOrder(callback, current.right);
     callback(current);
   }
+
+  height(node) {
+    if (!node) return -1;
+    return Math.max(this.height(node.left), this.height(node.right)) + 1;
+  }
 }
 
 export default Tree;
